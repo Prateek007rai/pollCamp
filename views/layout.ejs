@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/2633/2633926.png">
+        <title>
+            <%= title  %>
+        </title>
+        <script  src="https://kit.fontawesome.com/b3348ae33f.js"
+           crossorigin="anonymous"
+        ></script>
+
+        <!-- css animation used -->
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+
+
+        <%- style %>
+        
+    </head>
+
+    <body>
+        <%- include('_header'); %>
+        
+        <main id="layout-main">
+            <%- body %>
+
+        </main>
+
+
+        
+        <%- script %>
+        
+    </body>
+</html>

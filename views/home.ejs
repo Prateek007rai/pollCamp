@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<!-- ------------------------ Question create --------------------------------------- -->
+
+<div id="create-ques">
+ 
+    <form action="/question/create" method="POST">
+
+            <div id="ques-div"><label for="ques" class="animate__animated animate__shakeY">Ask a Question <img src="https://cdn-icons-png.flaticon.com/128/2859/2859734.png"></label>
+            <input type="text" name="ques" id="ques"  placeholder="Enter Question ..." requird /></div>         
+      
+    
+            <button type="submit" value="Add" id="ques-btn">Add Question</button>
+    </form>
+</div>
+
+
+
+<!---------------------------- print question and add/print option------------------------ -->
+
+<div id="ques-list">
+        <ol>
+            <% for(question of questions){ %>
+                <li>                     
+                    <div><span id="content"><%= question.content %></span></div>
+                    
+                    <a id="del" href="/question/destroy/<%= question.id %>"><i class="fa-regular fa-trash-alt"></i></a>
+                    
+
+            <!-- ---------------------------option list------------------------------ -->
+                    <div id="opt-list">
+                        <ol type="A">
+                            <% for(option of question.options){ %>
+                                <li> 
+                                    <div>
+                                        <span><%= option.text %></span>
+                                    
+                                    
+
+                                        <div>
+                                            <a id="vote-btn" href="/option/vote/<%= option.id %>"><img src="https://cdn-icons-png.flaticon.com/128/3179/3179486.png" /></a>
+                                            
+                                            <%= option.Votes.length %>
+        
+                                            <!-- condition to delete an option-->
+                                            <% if(option.Votes.length == 0){ %>
+                                                <a id="del-opt" href="/option/destroy/<%= option.id %>"><i class="fa-solid fa-times"></i></a>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% } %>
+                        </ol>
+                    </div>          
+                    
+            <!------------------------------add option-------------------------------  -->
+                    <div id="options">
+                        <h4>Add Options</h4>
+                        <form action="/option/create" method="POST">
+                        
+                            <input type="text" name="opt" id="opt"  placeholder="Add option  ..." required />
+                            <input type="hidden" name="ques" value="<%= question._id %>">
+                            <button type="submit" value="Add" id="btn">Add</button>                           
+                                                      
+                        
+                        </form>
+                    </div>
+                 </li>
+
+            <% } %>    
+        </ol>
+
+
+</div>
